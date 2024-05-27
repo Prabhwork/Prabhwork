@@ -1,0 +1,577 @@
+  #include<iostream>
+#include<fstream>
+#include<string>
+#include<ctime> 
+using namespace std;
+class Admin {
+public:
+char subject[20];
+int rollno,c,age;
+char name[30];
+int id;
+string mobileno;
+void addstudent();
+void displaystudent();
+void searchstudent();
+void addteacher();
+void displayteacher();
+void searchteacher();
+void addcourse();
+void displaycourse(); 
+void searchcourse();                 
+};
+void Admin::addstudent() {
+    
+        ofstream f;
+        f.open("student.txt",ios::app);
+    cout<<"\t\t\tStudent Information For Add\t\t\t"<<endl;
+    cout<<"\t\t\t%%%%%%%%%%%%%%%%%%%%%%%%%%%\t\t\t"<<endl;
+    cout<<"Enter The Name:";
+    cin>>name;
+    cout<<"Enter The roll no:";
+    cin>>rollno;
+    cout<<"Enter The Class:";
+    cin>>c;
+    while(c>12)
+    {
+        cout<<"enter your class again";
+        cin>>c;
+    }
+    cout<<"Enter The Mobile no:";
+    cin>>mobileno;
+    while(mobileno.length()!=10){
+        cout<<"your mobile number is invalid"<<endl;
+        cin>>mobileno;
+    }
+    cout<<"Enter The Age";
+    cin>>age;
+    if(!f){
+        cout<<"file not found"<<endl;
+        exit(0);}
+        f<<name<<endl<<rollno<<endl<<c<<endl<<mobileno<<endl<<age<<endl;
+        f.close();
+    
+}
+void Admin::displaystudent() {
+    ifstream f;
+    f.open("student.txt",ios::in);
+    cout<<"\t\t\tStudent Information For Display\t\t\t"<<endl;
+    cout<<"\t\t\t%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\t\t\t"<<endl;
+    if(!f){
+        cout<<"file not found";
+        exit(0);
+    }
+    f>>name>>rollno>>c>>mobileno>>age;
+    while(!f.eof())
+    {
+    cout<<"-----------------------"<<endl;
+    cout<<"Name of the student is:"<<name<<endl;;
+    cout<<"Roll no of the student is:"<<rollno<<endl;
+    cout<<"Class of the student is:"<<c<<endl;;
+    cout<<"Mobile of the student is:"<<mobileno<<endl;
+    cout<<"Age of the student is:"<<age<<endl;
+     f>>name>>rollno>>c>>mobileno>>age;
+    }
+    f.close();
+    }
+void Admin::searchstudent() {
+ fstream f;
+ int ser;
+ cout<<"\t\t\tStudent Information For search\t\t\t"<<endl;
+    cout<<"\t\t\t%%%%%%%%%%%%%%%%%%%%%%%%%%%\t\t\t"<<endl;
+ cout<<"Enter Your Search No:";
+ cin>>ser;
+ f.open("student.txt",ios::in);
+ if(!f){
+ cout<<"file not found";
+ exit(0);}
+ f>>name>>rollno>>c>>mobileno>>age;
+ while(!f.eof()){
+ if(rollno==ser){
+       cout<<"Name of the student is:"<<name<<endl;;
+    cout<<"Roll no of the student is:"<<rollno<<endl;
+    cout<<"Class of the student is:"<<c<<endl;;
+    cout<<"Mobile of the student is:"<<mobileno<<endl;
+    cout<<"Age of the student is:"<<age<<endl;
+    break;}
+     f>>name>>rollno>>c>>mobileno>>age;
+    }
+    f.close();}
+void Admin::addteacher() {
+        ofstream f;
+        f.open("teachers.txt",ios::app);
+    cout<<"\t\t\tTeachers Information For Add\t\t\t"<<endl;
+    cout<<"\t\t\t%%%%%%%%%%%%%%%%%%%%%%%%%%%%\t\t\t"<<endl;
+    cout<<"Enter The Name:";
+    cin>>name;
+    cout<<"Enter Your TId:";
+    cin>>id;
+    cout<<"Enter The Subject:";
+    cin>>subject;
+    cout<<"Enter The Mobile No:";
+    cin>>mobileno;
+    while(mobileno.length()!=10){
+        cout<<"your mobile number is invalid"<<endl;
+        cin>>mobileno;
+    }
+    cout<<"Enter The Age:";
+    cin>>age;
+    if(!f){
+        cout<<"file not found"<<endl;
+        exit(0);}
+        f<<name<<endl<<id<<endl<<subject<<endl<<mobileno<<endl<<age<<endl;
+        f.close();
+     
+}
+void Admin::displayteacher() {
+    ifstream f;
+    f.open("teachers.txt",ios::in);
+    cout<<"\t\t\tTeacher Information For Display\t\t\t"<<endl;
+    cout<<"\t\t\t%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\t\t\t"<<endl;
+    if(!f){
+        cout<<"file not found";
+        exit(0);
+    }
+    f>>name>>id>>subject>>mobileno>>age;
+    while(!f.eof())
+    {
+    cout<<"----------------------"<<endl;    
+    cout<<"Name of the teacher is:"<<name<<endl;;
+    cout<<"Id of the teacher is:"<<id<<endl;
+    cout<<"subject of the teacher is:"<<subject<<endl;;
+    cout<<"Mobile of the teacheris:"<<mobileno<<endl;
+    cout<<"Age of the teacher is:"<<age<<endl;
+     f>>name>>id>>subject>>mobileno>>age;
+    }
+    f.close();
+    } 
+
+void Admin::searchteacher() {
+   fstream f;
+ int ser;
+  cout<<"\t\t\tTeacher Information For search\t\t\t"<<endl;
+  cout<<"\t\t\t%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\t\t\t"<<endl;
+ cout<<"Enter Your Search No:";
+ cin>>ser;
+ f.open("Teachers.txt",ios::in);
+ if(!f){
+ cout<<"file not found";
+ exit(0);}
+ f>>name>>id>>subject>>mobileno>>age;
+ while(!f.eof()){
+ if(id==ser){
+       cout<<"Name of the teacher is:"<<name<<endl;;
+    cout<<"Id of the teacher is:"<<id<<endl;
+    cout<<"subject of the teacher is:"<<c<<endl;;
+    cout<<"Mobile of the teacher is:"<<mobileno<<endl;
+    cout<<"Age of the teacher is:"<<age<<endl;
+    break;}
+     f>>name>>id>>subject>>mobileno>>age;
+    }
+    f.close();
+} 
+
+void Admin::addcourse() {
+   ofstream f;
+        f.open("courses.txt",ios::app);
+    cout<<"\t\t\tCourses Information For Add\t\t\t"<<endl;
+    cout<<"\t\t\t%%%%%%%%%%%%%%%%%%%%%%%%%%%\t\t\t"<<endl;
+    cout<<"Enter The Course Name:";
+    cin>>name;
+    cout<<"Enter Your Course Id:";
+    cin>>id;
+    if(!f){
+        cout<<"file not found"<<endl;
+        exit(0);}
+        f<<name<<endl<<id<<endl;
+        f.close();  
+
+}
+void Admin::displaycourse() {
+    ifstream f;
+    f.open("courses.txt",ios::in);
+    cout<<"\t\t\tCourses Information For Display\t\t\t"<<endl;
+    cout<<"\t\t\t%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\t\t\t"<<endl;
+    if(!f){
+        cout<<"file not found";
+        exit(0);
+    }
+    f>>name>>id;
+    while(!f.eof())
+    {
+    cout<<"----------------------"<<endl;    
+    cout<<"name of the course is:"<<name<<endl;;
+    cout<<"id of the course is:"<<id<<endl;
+     f>>name>>id;
+    }
+    f.close();
+    }
+void Admin::searchcourse() {
+      fstream f;
+ int ser;
+  cout<<"\t\t\tcourses Information For search\t\t\t"<<endl;
+  cout<<"\t\t\t%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\t\t\t"<<endl;
+ cout<<"Enter Your Search No:";
+ cin>>ser;
+ f.open("courses.txt",ios::in);
+ if(!f){
+ cout<<"file not found";
+ exit(0);}
+ f>>name>>id;
+ while(!f.eof()){
+ if(id==ser){
+       cout<<"Name Of The Course Is:"<<name<<endl;;
+      cout<<"Id Of The Course Is:"<<id<<endl;
+    break;}
+     f>>name>>id;
+    }
+    f.close();
+}
+class Teacher {
+private:
+    const int numberOfStudents = 10;
+    
+public:
+     int currentAttendance,i;
+void totalAttendance() {
+    ifstream inFile;
+    int totalAttendance = 0;
+
+    inFile.open("attendance.txt", ios::in);
+
+    if (!inFile) {
+        cout << "Error opening file for reading." << endl;
+        exit(0);
+    }
+
+    while (inFile >> currentAttendance) {
+        totalAttendance += currentAttendance;
+    }
+
+    time_t tmNow = time(0);
+    char*dt=ctime(&tmNow);
+    cout << endl;
+    cout << "Date Of The Attendance: " << dt << endl;
+    cout << endl;
+    cout << "Total attendance: " << totalAttendance << endl;
+
+    inFile.close();
+
+    if (inFile.is_open()) {
+        inFile.close();
+    }
+}
+
+    void takeAttendance() {
+        ofstream outFile;
+        int currentAttendance;
+
+        outFile.open("attendance.txt", ios::app);
+
+        if (!outFile) {
+            cout << "Error opening file for writing." << endl;
+            exit(0);
+        }
+        cout<<"Enter the attendence in the format of 0 and 1"<<endl;
+        for ( i = 1; i <= 10; ++i) {
+            cout << "Enter attendance for student " << i << ": ";
+            cin >> currentAttendance;
+            outFile<<currentAttendance << endl;
+        }
+        cout<<"Attendence record successfully......."<<endl;
+
+        outFile.close();
+    }
+void givemarks();
+};
+  void Teacher::givemarks()
+  {
+    ofstream file("marks.txt", ios::app);
+    if (file.is_open()) {
+        string marks;
+        int rollno;
+        cout << "Enter roll no of the student :";
+        cin>>rollno;
+        cout<<"Enter the marks of the student :";
+        cin.ignore();
+        getline(cin, marks);
+        file<<"________________________ rollno|marks"<<endl;
+        file << "The marks of the sutdent is :"<<rollno<<"|"<<marks<< endl;
+        file<<"_____________________________________`"<<endl;
+        file.close();
+        cout << "Marks recorded successfully." << endl;
+    } else {
+        cout << "Unable to open file." << endl;
+    }
+}
+
+class Student:public Teacher {
+public:
+void viewmarks();
+void viewattendence();
+};
+void Student::viewattendence() {
+
+    ifstream f;
+    f.open("attendance.txt",ios::in);
+    if (!f) {
+        cout<<"File not found"<<endl;
+        exit(0);}
+    f>>currentAttendance;
+    while(!f.eof())
+    {
+        for(int a=1;a<=10;a++){
+        cout<<"Attendence of the student :"<<a<<" : "<<currentAttendance<<endl;
+        f>>currentAttendance;}
+    }
+        f.close();
+    }
+void Student::viewmarks() {
+    ifstream file("marks.txt");
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            cout << line << endl;
+        }
+        file.close();
+    } else {
+        cout << "Unable to open file." << endl;
+    }
+}
+class Accountant {
+    public:
+    char studentName[20];;
+    int studentID;
+    int feesAmount;
+    void manageFees();
+    void generateFeeSlip();
+    void saveToFile();};
+    void Accountant::manageFees() {
+        cout << "Enter student name: ";
+        cin>>studentName;
+        cout << "Enter student ID: ";
+        cin >> studentID;
+        cout << "Enter fees amount:";
+        cin >> feesAmount;
+        saveToFile();
+        cout << "Fees managed successfully."<<endl;
+    }
+    void Accountant::generateFeeSlip() {
+        cout<<"----Fee Slip-----"<<endl;
+        cout<<"Student Name:"<<studentName << endl;
+        cout<<"Student ID:"<<studentID << endl;
+        cout<<"Fees Amount:"<< feesAmount << endl;
+    }
+    void Accountant::saveToFile() {
+        ofstream file("fees_data.txt",ios::app);
+        if(file.is_open()){
+            file<<"Student Name:"<< studentName <<endl;
+            file<<"Student ID:"<< studentID <<endl;
+            file<<"Fees Amount:"<< feesAmount <<endl;
+            file.close();
+        } else{
+            cout<<"Unable to open file for writing."<<endl;
+        }}
+int main() {
+    int choice;
+    cout<<"\t\t\t:***************************************************************:\t\t\t"<<endl;;
+    cout<<"\t\t\t:--------------------SCHOOL ERP MANAGMENT SYSTEM----------------:\t\t\t"<<endl;
+    cout<<"\t\t\t:***************************************************************:\t\t\t"<<endl;
+    do {
+        cout <<"Main Menu:"<<endl;
+        cout<<"----------"<<endl;
+        cout <<"1. Admin" << endl;
+        cout<<"2. Teacher"<<endl;
+        cout<<"3. Student"<<endl;
+        cout<<"4. Accountant"<<endl;
+        cout<<"5. Exit"<<endl;
+        cout<<"Enter your choice: ";
+        cin>>choice;
+        switch (choice) {
+            case 1:{
+                int ch;
+                Admin a;
+    string username;
+    string password;
+    string eusername;
+    string epassword;
+    username="user";
+    password="pass";
+    cout<<"enter username :";
+    cin>>eusername;
+    cout<<"enter password  : ";
+    cin>>epassword;
+    if(eusername==username && epassword==password)
+    {
+        cout<<"Admin Login Successful..........."<<endl;;
+                    cout<<"-----Students Information-----"<<endl;
+                    cout<<"------------------------------"<<endl;
+                    cout<<"Enter 1. Add Student Details"<<endl;
+                    cout<<"Enter 2. Display Student Details"<<endl;
+                    cout<<"Enter 3.Search Student Details"<<endl;
+                    cout<<"-----Teachers Information-----"<<endl;
+                    cout<<"------------------------------"<<endl;
+                     cout<<"Enter 4.Add Teacher Details"<<endl;
+                    cout<<"Enter 5.Display Teacher Details"<<endl;
+                    cout<<"Enter 6.Search Teacher Details"<<endl;
+                    cout<<"------Courses Information-----"<<endl;
+                    cout<<"------------------------------"<<endl;
+                    cout<<"enter 7.Add Courses Details"<<endl;
+                    cout<<"enter 8.Display Courses Details"<<endl;
+                    cout<<"enter 9.Search Cources Details"<<endl;
+                    cout<<"enter 10.Exit The Program"<<endl;
+                    cout<<"Enter Your Choice :"; 
+                    cin>>ch;}
+                    else{
+        cout<<"username and password is invalid. access denied........"<<endl;
+        break;
+    }
+                     if(ch==1){
+                        a.addstudent();
+                        break;}
+                       else if(ch==2){
+                        a.displaystudent();
+                        break;}
+                        else if(ch==3){
+                        a.searchstudent();
+                        break;}
+                        else if(ch==4){
+                        a.addteacher();
+                        break;}
+                        else if(ch==5){
+                        a.displayteacher();
+                        break;}
+                        else if(ch==6){
+                        a.searchteacher();
+                        break;}
+                        else if(ch==7){
+                        a.addcourse();
+                        break;}
+                        else if(ch==8){
+                        a.displaycourse();
+                        break;}
+                 else if(ch==9 ){
+                        a.searchcourse();
+                        break;
+                     }
+                     else if(ch==10){
+                        cout<<"exit";
+                        break;
+                     }
+                     else {
+                         cout<<"wrong choice"<<endl;
+                         break;
+                     }
+                     }
+            case 2:{
+                Teacher t;
+                int tea;
+    string user;
+    string pass;
+    string enterusername;
+    string enterpassword;
+    user="jcc";
+    pass="jcc";
+    cout<<"enter teacher username : ";
+    cin>>enterusername;
+    cout<<"enter teacher password : ";
+    cin>>enterpassword;
+    if(user==enterusername&pass==enterpassword)
+    {
+        cout<<"Teacher Login successfully:............."<<endl;
+                cout<<"ATTENDENCE MANGMENT"<<endl;
+                cout<<"1.Taking Attendence:"<<endl;
+                cout<<"2.Total Attendence:"<<endl;
+                cout<<"3.Give Marks:"<<endl;
+                cout<<"4.exit"<<endl;
+                cout<<"enter your choice:";
+                cin>>tea;}
+                else{
+                    cout<<"username and password is not vadil. access denied"<<endl;;
+                    break;}
+                if(tea==1){
+                 t.takeAttendance();
+                 break;}
+                else if(tea==2){
+                 t.totalAttendance();
+                 break;}
+                 else if(tea==3){
+                 t.givemarks();
+                 break;}
+                 else if(tea==4)
+                 {
+                 cout<<"exit";
+                 break;}
+                 else{
+                    cout<<"wrong choice!........"<<endl;
+                    break;
+                 }
+                }
+               break; 
+            case 3: {
+                Student s;
+                int stu;  
+                cout<<"1.view Attendence:"<<endl;
+                cout<<"2. view Marks:"<<endl;
+                cout<<"3.exit"<<endl;
+                cout<<"enter your choice";
+                cin>>stu;
+                switch(stu){
+                 case 1:
+                 s.viewattendence();
+                 break;
+                 case 2:
+                 s.viewmarks();
+                 break;
+                 case 3:
+                 cout<<"exit";
+                }
+                break;}
+            case 4: {
+                Accountant a;
+                int d;
+                string user;
+    string pass;
+    string enterusername;
+    string enterpassword;
+    user="123";
+    pass="123";
+    cout<<"enter username : ";
+    cin>>enterusername;
+    cout<<"enter password : ";
+    cin>>enterpassword;
+    if(user==enterusername&pass==enterpassword)
+{
+                cout<<"1.Accountant Manage Fees Of The Student:"<<endl;
+                cout<<"2.Accountant Generate Fees Slip Of The Student:"<<endl;
+                cout<<"3.Exit"<<endl;
+                cout<<"Enter Your Choice: "<<endl;
+                cin>>d;}
+                else{
+                    cout<<"ivalid username and password.access denied......"<<endl ;
+                    break;
+                }
+                if(d==1){
+                a.manageFees();
+                break;}
+                else if(d==2){
+                a.generateFeeSlip();
+                break;}
+                else if(d==3){
+                    cout<<"Exit"<<endl;
+                    break;}
+                    else{
+                        cout<<"wrong choice!....";
+                        break;
+                    }
+                        
+            }
+            case 5:
+                cout << "Exiting program. Goodbye!..." << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl; }
+                
+    } while (choice != 5);
+    return 0;
+}
